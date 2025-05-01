@@ -9,7 +9,7 @@
 <body>
   <div class="center-oval">
     <div class="avatar-circle">
-      <img src="avatar.jpg" alt="Avatar" />
+      <img src="assets/img/photo/logo.jpg" alt="Avatar" />
     </div>
     <h1 class="nickname">lew3l1</h1>
     <p class="subtitle">Welcome to my digital space</p>
@@ -23,6 +23,39 @@
   <div class="settings-icon" id="settingsBtn">
     ⚙️
   </div>
+  <!-- Панель настроек -->
+<div class="settings-panel hidden" id="settingsPanel">
+    <div class="panel-content">
+      <!-- Время и дата -->
+      <div class="datetime-box" id="datetime"></div>
+  
+      <!-- Аудио-инфо -->
+      <div class="audio-block">
+        <div class="audio-text">
+          <span class="audio-sub">Our last project</span>
+          <span class="audio-main">TW.027</span>
+        </div>
+        <div class="headphones-icon" id="headphonesBtn">🎧</div>
+      </div>
+  
+      <!-- Ползунок громкости -->
+      <div class="volume-popup hidden" id="volumePopup">
+        <input type="range" min="0" max="100" value="20" id="volumeSlider" />
+      </div>
+  
+      <!-- Обложка и стрелки -->
+      <div class="track-controls">
+        <button class="arrow-btn">⟵</button>
+        <img src="cover.jpg" alt="Track Cover" class="track-cover" />
+        <button class="arrow-btn">⟶</button>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Аудиоплеер -->
+<audio id="bgAudio" src="/Sound/hard/52-Kis23.mp3" loop preload="auto"></audio>
+
 
   <script src="/style/js/script.js"></script>
 </body>
