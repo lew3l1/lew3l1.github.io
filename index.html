@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,56 +7,78 @@
   <link rel="stylesheet" href="/style/css/style.css" />
 </head>
 <body>
-  <div class="center-oval">
+  <!-- фон -->
+  <div id="background"></div>
+
+  <!-- центральный овал -->
+  <div class="center-oval main-panel">
     <div class="avatar-circle">
       <img src="assets/img/photo/logo.jpg" alt="Avatar" />
     </div>
-    <h1 class="nickname">lew3l1</h1>
-    <p class="subtitle">Welcome to my digital space</p>
+    <h1 class="nickname animated-item">lew3l1</h1>
+    <p class="subtitle animated-item">Welcome to my digital space</p>
     <div class="social-links">
-      <a href="#" class="social-btn">Twitter</a>
-      <a href="#" class="social-btn">Instagram</a>
-      <a href="#" class="social-btn">GitHub</a>
+      <a href="#" class="social-btn animated-item">Twitter</a>
+      <a href="#" class="social-btn animated-item">Instagram</a>
+      <a href="#" class="social-btn animated-item">GitHub</a>
     </div>
   </div>
 
-  <div class="settings-icon" id="settingsBtn">
-    ⚙️
-  </div>
-  <!-- Панель настроек -->
-<div class="settings-panel hidden" id="settingsPanel">
+  <!-- иконка настроек -->
+  <div class="settings-icon" id="settingsBtn">⚙️</div>
+
+  <!-- панель настроек -->
+  <div class="settings-panel hidden" id="settingsPanel">
     <div class="panel-content">
-      <!-- Время и дата -->
-      <div class="datetime-box" id="datetime"></div>
-  
-      <!-- Аудио-инфо -->
-      <div class="audio-block">
-        <div class="audio-text">
-          <span class="audio-sub">Our last project</span>
-          <span class="audio-main">TW.027</span>
+      <!-- Основной блок -->
+      <div class="main-settings-block">
+        <!-- Верхняя часть с датой/временем -->
+        <div class="datetime-box">
+          <span id="date"></span><br>
+          <span id="time"></span>
         </div>
-        <div class="headphones-icon" id="headphonesBtn">🎧</div>
+
+        <!-- Аудио блок -->
+        <div class="audio-block">
+          <div class="audio-text">
+            <span class="audio-sub">Our last project</span>
+            <span class="audio-main">TW.027</span>
+          </div>
+          <div class="audio-controls">
+            <div class="headphones-icon" id="headphonesBtn">🎧</div>
+            <div class="volume-popup hidden" id="volumePopup">
+              <input type="range" min="0" max="100" value="20" id="volumeSlider" />
+            </div>
+          </div>
+        </div>
       </div>
-  
-      <!-- Ползунок громкости -->
-      <div class="volume-popup hidden" id="volumePopup">
-        <input type="range" min="0" max="100" value="20" id="volumeSlider" />
-      </div>
-  
-      <!-- Обложка и стрелки -->
-      <div class="track-controls">
-        <button class="arrow-btn">⟵</button>
-        <img src="cover.jpg" alt="Track Cover" class="track-cover" />
-        <button class="arrow-btn">⟶</button>
+
+      <!-- Нижняя панель с фоном и темой -->
+      <div class="bottom-controls">
+        <button id="themeToggle" class="icon-button">🌞</button>
+        <button id="bgToggle" class="icon-button">🎨</button>
+        <div id="bgOptions" class="bg-options hidden">
+          <label><input type="radio" name="bg" value="bg1" checked> Горы</label>
+          <label><input type="radio" name="bg" value="bg2"> Город</label>
+          <label><input type="radio" name="bg" value="bg3"> Пляж</label>
+        </div>
       </div>
     </div>
   </div>
-  
 
-  <!-- Аудиоплеер -->
-<audio id="bgAudio" src="/Sound/hard/52-Kis23.mp3" loop preload="auto"></audio>
+  <!-- панель треков -->
+  <div class="track-panel">
+    <img src="" alt="Cover" class="track-cover" />
+    <div class="track-info">
+      <div class="marquee"><span class="marquee-text"></span></div>
+      <div class="track-arrows">
+        <button class="arrow-btn prev-btn">⟵</button>
+        <button class="arrow-btn next-btn">⟶</button>
+      </div>
+    </div>
+  </div>
 
-
+  <audio id="bgAudio" src="" loop preload="auto"></audio>
   <script src="/style/js/script.js"></script>
 </body>
 </html>
