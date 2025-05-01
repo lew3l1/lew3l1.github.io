@@ -1,228 +1,360 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* предустановленные фоны */
+:root {
+    --bg1: url('../assets/img/bg/bg1.jpg');
+    --bg2: url('../assets/img/bg/bg2.jpg');
+    --bg3: url('../assets/img/bg/bg3.jpg');
+  }
+  
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
   }
   body {
-    background: radial-gradient(circle at center, #0e0e0e, #000);
     font-family: 'Segoe UI', sans-serif;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
     overflow: hidden;
+    position: relative;
   }
+  
+  /* фон */
+  #background {
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-image: var(--bg1);
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    transition: background-image 0.5s ease-in-out;
+  }
+  
+  /* центральный овал */
   .center-oval {
-    width: 320px;
-    height: 500px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50% / 40%;
+    width: 320px; height: 500px;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50%/40%;
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
     text-align: center;
     padding: 40px 20px;
+    position: relative;
   }
+  html[data-theme="dark"] .center-oval {
+    background: rgba(0,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+  
   .avatar-circle img {
-    width: 100px;
-    height: 100px;
+    width: 100px; height: 100px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 20px;
+    border: 3px solid rgba(255,255,255,0.6);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
   }
+  .avatar-circle img:hover {
+    transform: scale(1.1);
+  }
+  
   .nickname {
-    font-size: 24px;
-    color: white;
-    margin-bottom: 5px;
+    font-size: 24px; color: #333; margin-bottom: 5px;
   }
+  html[data-theme="dark"] .nickname { color: #eee; }
+  
   .subtitle {
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 30px;
+    font-size: 12px; color: #555; margin-bottom: 30px;
   }
+  html[data-theme="dark"] .subtitle { color: #aaa; }
+  
   .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    display: flex; flex-direction: column; gap: 12px;
   }
   .social-btn {
     text-decoration: none;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.5);
     border-radius: 20px;
-    color: white;
-    transition: all 0.3s ease;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  html[data-theme="dark"] .social-btn {
+    background: rgba(0,0,0,0.5);
   }
   .social-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
+  
+  /* иконка настроек */
   .settings-icon {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
+    position: absolute; bottom: 30px; left: 30px;
     font-size: 24px;
-    color: #ccc;
+    color: inherit;
     cursor: pointer;
     transition: transform 0.2s;
   }
-  .settings-icon:hover {
-    transform: scale(1.1);
-  }
+  .settings-icon:hover { transform: scale(1.1); }
   
+  /* панель настроек */
   .settings-panel {
-    position: absolute;
-    bottom: 80px;
-    left: 30px;
-    width: 280px;
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 30px;
+    position: absolute; bottom: 80px; left: 30px;
+    width: 300px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
     padding: 20px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
   }
-  .hidden {
-    display: none;
+  html[data-theme="dark"] .settings-panel {
+    background: rgba(0,0,0,0.7);
   }
-  .datetime-box {
-    background: rgba(255,255,255,0.08);
-    padding: 10px 15px;
-    border-radius: 20px;
-    color: white;
+  .hidden { display: none; }
+  
+  .icon-button {
+    background: rgba(255,255,255,0.7);
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+    margin-right: 0.5rem;
+  }
+  html[data-theme="dark"] .icon-button {
+    background: rgba(0,0,0,0.7);
+  }
+  .icon-button:hover { transform: scale(1.1); }
+  
+  /* выбор фона */
+  .bg-options {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,0.9);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  html[data-theme="dark"] .bg-options {
+    background: rgba(0,0,0,0.8);
+  }
+  .bg-options label {
     font-size: 14px;
-    margin-bottom: 15px;
-    text-align: center;
+    margin-bottom: 5px;
   }
+  
+  /* дата и время */
+  .datetime-box {
+    background: rgba(255,255,255,0.8);
+    color: #333;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  html[data-theme="dark"] .datetime-box {
+    background: rgba(0,0,0,0.7);
+    color: #eee;
+  }
+  
+  /* аудио-блок в настройках */
   .audio-block {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255,255,255,0.08);
-    padding: 10px 15px;
-    border-radius: 20px;
-    margin-bottom: 10px;
+    background: rgba(255,255,255,0.8);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   }
-  .audio-text {
-    display: flex;
-    flex-direction: column;
-  }
-  .audio-sub {
-    font-size: 10px;
-    color: #aaa;
-  }
-  .audio-main {
-    font-size: 14px;
-    color: white;
-  }
-  .headphones-icon {
-    cursor: pointer;
-    font-size: 18px;
-  }
-  .volume-popup {
-    margin-bottom: 15px;
-    text-align: center;
-  }
-  .volume-popup input[type="range"] {
-    width: 100%;
+  html[data-theme="dark"] .audio-block {
+    background: rgba(0,0,0,0.7);
   }
   
-  .track-controls {
+  .audio-text { display: flex; flex-direction: column; }
+  .audio-sub { font-size: 12px; color: #555; }
+  html[data-theme="dark"] .audio-sub { color: #aaa; }
+  .audio-main { font-size: 14px; color: #333; }
+  html[data-theme="dark"] .audio-main { color: #eee; }
+  
+  .headphones-icon { cursor: pointer; font-size: 20px; }
+  
+  /* ползунок громкости */
+  .volume-popup {
+    margin-top: 10px;
+    background: rgba(255,255,255,0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  html[data-theme="dark"] .volume-popup {
+    background: rgba(0,0,0,0.7);
+  }
+  .volume-popup input[type="range"] { width: 100%; }
+  
+  /* панель треков справа */
+  .track-panel {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255,255,255,0.9);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-  .arrow-btn {
-    background: rgba(255,255,255,0.08);
-    border: none;
-    border-radius: 50%;
-    color: white;
-    font-size: 18px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
-  .track-cover {
-    width: 80px;
-    height: 80px;
+    padding: 10px;
     border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  html[data-theme="dark"] .track-panel {
+    background: rgba(0,0,0,0.7);
+  }
+  
+  .track-cover {
+    width: 50px; height: 50px;
+    border-radius: 10px;
     object-fit: cover;
+    margin-right: 10px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
   }
   
-  input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    background: #444;
-    height: 4px;
-    border-radius: 5px;
+  .track-info { display: flex; flex-direction: column; }
+  
+  .marquee {
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
   }
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 14px;
-    width: 14px;
-    background: white;
-    border-radius: 50%;
-    cursor: pointer;
+  .marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll 8s linear infinite;
   }
-  input[type="range"]::-moz-range-thumb {
-    height: 14px;
-    width: 14px;
-    background: white;
-    border-radius: 50%;
-    cursor: pointer;
+  @keyframes scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
   }
   
-  .fade-out {
-    opacity: 0;
-    transition: opacity 0.4s ease;
+  .track-arrows { margin-top: 5px; }
+  .arrow-btn {
+    background: none; border: none;
+    font-size: 18px; cursor: pointer;
+    transition: transform 0.2s;
   }
+  .arrow-btn:hover { transform: scale(1.2); }
   
-  .fade-in {
-    opacity: 1;
-    transition: opacity 0.4s ease;
+  /* входная анимация */
+  @keyframes panelEnter {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
   }
-  
-  /* Центральная панель (например, .main-panel) появляется с масштабом */
-@keyframes panelEnter {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  /* Элементы внутри панели */
   @keyframes fadeSlideIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
-  
   .main-panel {
     opacity: 0;
-    transform: scale(0.8);
-    animation: panelEnter 0.6s ease-out forwards;
-    animation-delay: 0.2s;
+    animation: panelEnter 0.6s ease-out forwards 0.2s;
   }
-  
-  /* Внутренние элементы: аватар, ник, соцсети */
   .animated-item {
     opacity: 0;
     animation: fadeSlideIn 0.6s ease forwards;
   }
+  .animated-item:nth-child(1) { animation-delay: 0.4s; }
+  .animated-item:nth-child(2) { animation-delay: 0.6s; }
+  .animated-item:nth-child(3) { animation-delay: 0.8s; }
+  .animated-item:nth-child(4) { animation-delay: 1s; }
   
-  /* С небольшой задержкой для каждого */
-  .animated-item:nth-child(1) { animation-delay: 0.6s; }
-  .animated-item:nth-child(2) { animation-delay: 0.8s; }
-  .animated-item:nth-child(3) { animation-delay: 1s; }
-  .animated-item:nth-child(4) { animation-delay: 1.2s; }
-  /* добавь сколько нужно */
 
+  /* предустановленные фоны */
+:root {
+    --bg1: url('assets/img/bg/default.jpg'); /* дефолтный фон */
+    --bg2: url('../assets/img/bg/bg2.jpg');
+    --bg3: url('../assets/img/bg/bg3.jpg');
+}
+
+/* Добавить светлый/тёмный стиль для текста */
+html[data-theme="light"] .nickname, html[data-theme="light"] .subtitle {
+    color: #333;
+}
+
+html[data-theme="dark"] .nickname, html[data-theme="dark"] .subtitle {
+    color: #eee;
+}
+
+/* Центральный овал (светлый и тёмный режим) */
+html[data-theme="light"] .center-oval {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+}
+html[data-theme="dark"] .center-oval {
+    background: rgba(0,0,0,0.5);
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* Панель настроек */
+.settings-panel {
+    position: fixed;
+    bottom: 100px;
+    left: 30px;
+    width: 300px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transform-origin: left bottom;
+    animation: panelSlide 0.3s ease;
+  }
   
+  @keyframes panelSlide {
+    0% { transform: scale(0.8) translateX(-20px); }
+    100% { transform: scale(1) translateX(0); }
+  }
+  
+  .main-settings-block {
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .audio-controls {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .volume-popup {
+    position: absolute;
+    left: 100%;
+    background: rgba(255,255,255,0.9);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Иконка настроек */
+  .settings-icon {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: rgba(255,255,255,0.9);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
