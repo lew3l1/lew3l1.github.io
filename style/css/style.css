@@ -1,0 +1,228 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background: radial-gradient(circle at center, #0e0e0e, #000);
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .center-oval {
+    width: 320px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50% / 40%;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .avatar-circle img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  .nickname {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 5px;
+  }
+  .subtitle {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 30px;
+  }
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .social-btn {
+    text-decoration: none;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .social-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .settings-icon {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .settings-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  .settings-panel {
+    position: absolute;
+    bottom: 80px;
+    left: 30px;
+    width: 280px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 30px;
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+  }
+  .hidden {
+    display: none;
+  }
+  .datetime-box {
+    background: rgba(255,255,255,0.08);
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .audio-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.08);
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .audio-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .audio-sub {
+    font-size: 10px;
+    color: #aaa;
+  }
+  .audio-main {
+    font-size: 14px;
+    color: white;
+  }
+  .headphones-icon {
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .volume-popup {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .volume-popup input[type="range"] {
+    width: 100%;
+  }
+  
+  .track-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .arrow-btn {
+    background: rgba(255,255,255,0.08);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  .track-cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+  
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #444;
+    height: 4px;
+    border-radius: 5px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 14px;
+    width: 14px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    height: 14px;
+    width: 14px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .fade-out {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .fade-in {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+  
+  /* Центральная панель (например, .main-panel) появляется с масштабом */
+@keyframes panelEnter {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Элементы внутри панели */
+  @keyframes fadeSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .main-panel {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: panelEnter 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+  
+  /* Внутренние элементы: аватар, ник, соцсети */
+  .animated-item {
+    opacity: 0;
+    animation: fadeSlideIn 0.6s ease forwards;
+  }
+  
+  /* С небольшой задержкой для каждого */
+  .animated-item:nth-child(1) { animation-delay: 0.6s; }
+  .animated-item:nth-child(2) { animation-delay: 0.8s; }
+  .animated-item:nth-child(3) { animation-delay: 1s; }
+  .animated-item:nth-child(4) { animation-delay: 1.2s; }
+  /* добавь сколько нужно */
+
+  
