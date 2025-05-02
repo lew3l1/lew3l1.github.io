@@ -9,7 +9,9 @@
     margin: 0; padding: 0; box-sizing: border-box;
   }
 
- 
+  link[rel="icon"] {
+    border-radius: 50%; 
+  }
   
   body {
     background: var(--bg-color);
