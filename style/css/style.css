@@ -36,7 +36,7 @@
   .center-oval {
     transition: all 0.3s ease;
     background: var(--box-bg);
-    box-shadow: var(--neomorph-shadow);
+    box-shadow: var(--neomorph-shadow), 0 0 12px var(--highlight-color); /* добавлена подсветка */
     width: fit-content;
     max-width: 600px;
     padding: 40px 50px;
@@ -49,17 +49,20 @@
     background: rgba(0,0,0,0.5);
     border: 2px solid rgba(255,255,255,0.3);
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    --neomorph-shadow: 6px 6px 12px #71a3c9, -6px -6px 12px #638cc9;
   }
 
   .social-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
-    padding: 20px 0 10px;
+    gap: 8px;
+    padding: 10px 0 10px;
+}
+
+  body.dark {
+    --highlight-color: #71a3c9;
   }
-
-
   
   .avatar-circle img {
     width: 100px; height: 100px;
@@ -88,26 +91,27 @@
     display: flex; flex-direction: column; gap: 12px;
   }
   .social-btn {
-  padding: 8px 14px;
-  font-size: 0.85rem;
-  border-radius: 12px;
-  background: var(--bg-secondary);
-  box-shadow: 4px 4px 6px rgba(0,0,0,0.1),
-              -4px -4px 6px rgba(255,255,255,0.3);
-  text-decoration: none;
-  color: var(--text-primary);
-  transition: 0.2s ease;
-  text-align: center;
-}
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    border-radius: 12px;
+    background: var(--bg-secondary);
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1),
+                -4px -4px 6px rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: transform 0.3s ease; /* Добавлена плавная анимация для трансформации */
+    text-align: center;
+  }
   html[data-theme="dark"] .social-btn {
     background: rgba(0,0,0,0.5);
   }
   .social-btn:hover {
-    transform: translateY(-2px);
+    transform: scale(1.07); /* плавное увеличение */
     box-shadow: 2px 2px 4px rgba(0,0,0,0.15),
                 -2px -2px 4px rgba(255,255,255,0.25);
   }
   
+
   /* иконка настроек */
   .settings-icon {
     position: absolute; bottom: 30px; left: 30px;
@@ -120,7 +124,7 @@
   
   /* панель настроек */
   .settings-panel {
-    position: absolute; bottom: 80px; left: 30px;
+    position: relative; bottom: 80px; left: 30px;
     width: 300px;
     background: rgba(255,255,255,0.8);
     backdrop-filter: blur(10px);
@@ -152,8 +156,7 @@
   
   /* выбор фона */
   .bg-options {
-    display: flex;
-    flex-direction: column;
+
     background: rgba(255,255,255,0.9);
     padding: 10px;
     border-radius: 10px;
@@ -280,6 +283,7 @@
     display: inline-block;
     padding-left: 100%;
     animation: scroll 8s linear infinite;
+    color: var(--text-primary);
   }
   @keyframes scroll {
     0%   { transform: translateX(0); }
@@ -291,8 +295,9 @@
     background: none; border: none;
     font-size: 18px; cursor: pointer;
     transition: transform 0.2s;
+    color: var(--text-primary);
   }
-  .arrow-btn:hover { transform: scale(1.2); }
+  .arrow-btn:hover { transform: scale(1.2); color: var(--text-secondary); }
   
   /* входная анимация */
   @keyframes panelEnter {
@@ -326,7 +331,7 @@
 
 /* Добавить светлый/тёмный стиль для текста */
 html[data-theme="light"] .nickname, html[data-theme="light"] .subtitle {
-    color: #333;
+  color: #dddddd;
 }
 
 html[data-theme="dark"] .nickname, html[data-theme="dark"] .subtitle {
@@ -336,11 +341,11 @@ html[data-theme="dark"] .nickname, html[data-theme="dark"] .subtitle {
 /* Центральный овал (светлый и тёмный режим) */
 html[data-theme="light"] .center-oval {
     background: rgba(255,255,255,0.2);
-    border: 2px solid rgba(255,255,255,0.5);
+    border: 1.7px solid rgba(102, 165, 207, 0.5);
 }
 html[data-theme="dark"] .center-oval {
     background: rgba(0,0,0,0.5);
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 1.7px solid rgba(72, 135, 194, 0.3);
 }
 
 /* Панель настроек */
@@ -374,7 +379,7 @@ html[data-theme="dark"] .center-oval {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
   
   .volume-popup {
@@ -411,6 +416,7 @@ html[data-theme="dark"] .center-oval {
     --text-secondary: #555;
     --bg-primary: rgba(255,255,255,0.2);
     --bg-secondary: rgba(255,255,255,0.8);
+    --highlight-color: #638cc9;
   }
   
   html[data-theme="dark"] {
@@ -435,19 +441,61 @@ html[data-theme="dark"] .center-oval {
     transition: background-image 0.5s ease-in-out;
   }
   
-  .center-oval {
-    padding: 40px 30px;
-    max-width: 400px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 50px;
-    background: var(--bg-primary);
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.1),
-                -10px -10px 30px rgba(255,255,255,0.2);
+  .central-oval {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 3px solid #a8d1ff; /* Постоянная голубая рамка */
+    box-shadow:
+      0 0 20px rgba(168, 209, 255, 0.4),
+      inset 0 0 10px rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
+    overflow: hidden;
   }
+
+  
+.central-oval::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    #a8d1ff,
+    transparent 25%
+  );
+  animation: rotate-glow 4s linear infinite;
+  z-index: 1;
+}
+
+
+.central-oval::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  z-index: 2;
+}
+
+.central-oval > * {
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes rotate-glow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
   
   .settings-icon {
     position: fixed;
@@ -485,20 +533,24 @@ html[data-theme="dark"] .center-oval {
   }
   
   .bg-options {
-    display: none;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
     position: absolute;
-    bottom: 100%;
-    left: 0;
-    margin-bottom: 10px;
+    top: 100%; 
+    right: 0;
+    background: var(--box-bg);
+    box-shadow: var(--neomorph-shadow);
+    border-radius: 12px;
+    padding: 10px;
+    z-index: 10;
   }
 
   .bg-options.show {
     display: flex;
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .bg-options.hidden {
+    display: none;
   }
   
   
@@ -556,6 +608,7 @@ html[data-theme="dark"] .center-oval {
       padding: 30px 20px;
       border-radius: 30px;
     }
+    
   
     .nickname {
       font-size: 1.4rem;
@@ -568,11 +621,7 @@ html[data-theme="dark"] .center-oval {
       margin-bottom: 20px;
     }
   
-    .social-links {
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
+  
   
     .social-btn {
       width: 100%;
@@ -597,12 +646,123 @@ html[data-theme="dark"] .center-oval {
     --bg-color: #e0e0e0;
     --box-bg: #f0f0f0;
     --text-color: #333;
-    --neomorph-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    --neomorph-shadow: 6px 6px 12px #71a3c9, -6px -6px 12px #638cc9;
   }
 
   .dark-theme {
     --bg-color: #1c1c1c;
     --box-bg: #2a2a2a;
     --text-color: #f0f0f0;
-    --neomorph-shadow: 6px 6px 12px #141414, -6px -6px 12px #2e2e2e;
+    --neomorph-shadow: 6px 6px 12px #71a3c9, -6px -6px 12px #696dc7;
   }
+
+  .link-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: none;
+    box-shadow:
+      4px 4px 10px rgba(0, 0, 0, 0.15),
+      -4px -4px 10px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .link-button:hover {
+    box-shadow:
+      inset 4px 4px 8px rgba(0, 0, 0, 0.15),
+      inset -4px -4px 8px rgba(255, 255, 255, 0.25),
+      0 0 12px rgba(168, 209, 255, 0.5);
+    transform: translateY(-2px) scale(1.05);
+  }
+  
+  .link-button i {
+    color: var(--text-color);
+    font-size: 24px;
+  }
+  
+
+
+  .background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.inner-settings-content {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(100, 100, 100, 0.2);
+  animation: fadeSlideIn 0.4s ease;
+}
+.inner-settings-content.hidden {
+  display: none;
+}
+
+.toggle-inner-block-btn {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.2s;
+}
+.toggle-inner-block-btn:hover {
+  background: var(--bg-primary);
+}
+
+
+html[data-theme="light"] .icon-link img {
+  filter: invert(90%);
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+  .track-panel {
+    position: fixed;
+    bottom: 10px;
+    right: -10px;
+    width: 50%; /* Уменьшаем ширину панели на мобильных устройствах */
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 15px;
+  }
+  
+  .track-cover {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .track-info {
+    font-size: 12px; /* Уменьшаем шрифт на мобильных устройствах */
+  }
+  
+  /* Можно также сделать панель скрытой в зависимости от состояния */
+  .track-panel.hidden {
+    display: none;
+  }
+}
