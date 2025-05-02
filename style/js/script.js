@@ -201,4 +201,17 @@ document.querySelectorAll('input[name="bg"]').forEach(radio => {
 });
 
 
+/* КНОПКА ПОДЕЛИТЬСЯ */
+// Открытие/закрытие панели при клике на кнопку
+document.getElementById('share-btn').addEventListener('click', function() {
+  const panel = document.getElementById('share-panel');
+  panel.classList.toggle('hidden');
+});
 
+// Функция для копирования ссылки в буфер обмена
+function copyToClipboard() {
+  const copyText = document.getElementById('copy-link-input');
+  copyText.select();
+  document.execCommand('copy');
+  alert("Ссылка скопирована!");
+}
