@@ -201,36 +201,71 @@ document.querySelectorAll('input[name="bg"]').forEach(radio => {
 });
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
   const shareBtn = document.querySelector('.share-btn');
   const sharePanel = document.querySelector('.share-panel');
+  const url = 'https://lew3l1.github.io'; // Ссылка для копирования
+  const copyBtn = document.getElementById('copy-btn');
+  const notification = document.getElementById('notification'); // Элемент для уведомления
 
   // Открытие панели при наведении на кнопку
   shareBtn.addEventListener('mouseenter', function () {
-    sharePanel.classList.remove('hidden'); // Показываем панель при наведении
+    sharePanel.classList.remove('d-none'); // Показываем панель при наведении
   });
 
   // Закрытие панели при убирании курсора с кнопки или панели
   shareBtn.addEventListener('mouseleave', function () {
-    // Добавляем небольшую задержку перед скрытием панели, чтобы не закрывалась мгновенно
     setTimeout(() => {
-      if (!sharePanel.matches(':hover')) {
-        sharePanel.classList.add('hidden');
+      if (!sharePanel.matches(':hover') && !shareBtn.matches(':hover')) {
+        sharePanel.classList.add('d-none');
       }
-    }, 200);
+    }, 200); // Задержка перед скрытием
   });
 
   // Закрытие панели при убирании курсора с панели
   sharePanel.addEventListener('mouseleave', function () {
-    sharePanel.classList.add('hidden'); // Скрываем панель при убирании курсора с панели
+    sharePanel.classList.add('d-none'); // Скрываем панель при убирании курсора с панели
   });
 
-  // Логика копирования ссылки
-  window.copyToClipboard = function () {
-    const copyText = document.getElementById('copy-link-input');
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    document.execCommand('copy');
-    alert("Ссылка скопирована!");
-  };
+  // Логика копирования ссылки при клике на кнопку
+  copyBtn.addEventListener('click', function (e) {
+    copyToClipboard(); // Копируем ссылку
+    e.stopPropagation(); // Останавливаем всплытие события, чтобы не закрыть панель при клике на кнопку
+  });
+
+  // Функция для копирования ссылки в буфер обмена
+  function copyToClipboard() {
+    navigator.clipboard.writeText(url).then(function() {
+      // Показываем уведомление о копировании
+      showNotification();
+    }).catch(function(err) {
+      console.error("Ошибка копирования: ", err);
+    });
+  }
+
+  // Функция для показа уведомления
+  function showNotification() {
+    notification.classList.remove('d-none');
+    setTimeout(function() {
+      notification.classList.add('d-none');
+    }, 2000); // Уведомление исчезает через 2 секунды
+  }
+
+  // Функция для смены темы
+  function toggleTheme() {
+    const currentTheme = document.body.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+      document.body.setAttribute('data-theme', 'light');
+    } else {
+      document.body.setAttribute('data-theme', 'dark');
+    }
+  }
+
+  // Пример кнопки для смены темы
+  const themeToggleButton = document.createElement('button');
+  themeToggleButton.innerText = 'Сменить тему';
+  themeToggleButton.classList.add('btn', 'btn-secondary', 'mt-3');
+  themeToggleButton.addEventListener('click', toggleTheme);
+  document.body.appendChild(themeToggleButton);
 });
