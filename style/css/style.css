@@ -1,8 +1,8 @@
 /* предустановленные фоны */
 :root {
-    --bg1: url('../assets/img/bg/bg1.jpg');
-    --bg2: url('../assets/img/bg/bg2.jpg');
-    --bg3: url('../assets/img/bg/bg3.jpg');
+    --bg1: url('../assets/img/bg/bg1.webm');
+    --bg2: url('../assets/img/bg/bg2.webm');
+    --bg3: url('../assets/img/bg/bg3.webm');
   }
   
   * {
@@ -150,9 +150,7 @@
   }
   .icon-button:hover { transform: scale(1.1); }
   
-  /* выбор фона */
   .bg-options {
-
     background: rgba(255,255,255,0.9);
     padding: 10px;
     border-radius: 10px;
@@ -160,11 +158,13 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
   html[data-theme="dark"] .bg-options {
+    color: #dddddd;
     background: rgba(0,0,0,0.8);
   }
   .bg-options label {
     font-size: 14px;
     margin-bottom: 5px;
+    color: var(--text-primary); 
   }
   
   /* дата и время */
@@ -188,13 +188,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
     margin-top: 10px;
-  }
+    border-radius: 15px;
+    padding: 5px;
+}
   html[data-theme="dark"] .audio-block {
-    background: rgba(0,0,0,0.7);
+    background: rgb(26 26 26 / 70%);
   }
 
+  html[data-theme="light"] .audio-block {
+    background: rgba(192, 192, 192, 0.7);
+  }
   .audio-preview {
     display: flex;
     align-items: center;
@@ -320,9 +325,9 @@
 
   /* предустановленные фоны */
 :root {
-    --bg1: url('assets/img/bg/default.jpg'); /* дефолтный фон */
-    --bg2: url('../assets/img/bg/bg2.jpg');
-    --bg3: url('../assets/img/bg/bg3.jpg');
+    --bg1: url('../assets/img/bg/bg1.webm');
+    --bg2: url('../assets/img/bg/bg2.webm');
+    --bg3: url('../assets/img/bg/bg3.webm');
 }
 
 /* Добавить светлый/тёмный стиль для текста */
@@ -405,9 +410,9 @@ html[data-theme="dark"] .center-oval {
   }
 
   :root {
-    --bg1: url('../assets/img/bg/bg1.jpg');
-    --bg2: url('../assets/img/bg/bg2.jpg');
-    --bg3: url('../assets/img/bg/bg3.jpg');
+    --bg1: url('../assets/img/bg/bg1.webm');
+    --bg2: url('../assets/img/bg/bg2.webm');
+    --bg3: url('../assets/img/bg/bg3.webm');
     --text-primary: #333;
     --text-secondary: #555;
     --bg-primary: rgba(255,255,255,0.2);
@@ -593,9 +598,7 @@ html[data-theme="dark"] .center-oval {
     height: 100%;
     filter: invert(20%);
   }
-  html[data-theme="dark"] .icon-link img {
-    filter: invert(90%);
-  }
+  
   
 
   @media (max-width: 600px) {
@@ -762,3 +765,9 @@ html[data-theme="light"] .icon-link img {
     display: none;
   }
 }
+
+[data-theme="dark"] .icon-link {
+  filter: invert(1);
+}
+
+
