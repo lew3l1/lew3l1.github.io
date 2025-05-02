@@ -7,10 +7,8 @@
   <link rel="stylesheet" href="/style/css/style.css" />
 </head>
 <body>
-  <!-- фон -->
   <div id="background"></div>
 
-  <!-- центральный овал -->
   <div class="center-oval main-panel">
     <div class="avatar-circle">
       <img src="assets/img/photo/logo.jpg" alt="Avatar" />
@@ -24,49 +22,41 @@
     </div>
   </div>
 
-  <!-- иконка настроек -->
   <div class="settings-icon" id="settingsBtn">⚙️</div>
 
-  <!-- панель настроек -->
   <div class="settings-panel hidden" id="settingsPanel">
     <div class="panel-content">
-      <!-- Основной блок -->
       <div class="main-settings-block">
-        <!-- Верхняя часть с датой/временем -->
         <div class="datetime-box">
           <span id="date"></span><br>
           <span id="time"></span>
-        </div>
 
-        <!-- Аудио блок -->
-        <div class="audio-block">
-          <div class="audio-text">
-            <span class="audio-sub">Our last project</span>
-            <span class="audio-main">TW.027</span>
-          </div>
-          <div class="audio-controls">
-            <div class="headphones-icon" id="headphonesBtn">🎧</div>
-            <div class="volume-popup hidden" id="volumePopup">
-              <input type="range" min="0" max="100" value="20" id="volumeSlider" />
+          <div class="audio-block">
+            <div class="audio-text">
+              <span class="audio-sub">Our last project</span>
+              <span class="audio-main">TW.027</span>
+            </div>
+            <div class="audio-controls">
+              <div class="icon-button" id="headphonesBtn">🎧</div>
+              <div class="volume-popup hidden" id="volumePopup">
+                <input type="range" min="0" max="100" value="20" id="volumeSlider" />
+              </div>
+              <button id="themeToggle" class="icon-button">🌞</button>
+              <button id="bgToggle" class="icon-button">🎨</button>
             </div>
           </div>
         </div>
+
       </div>
 
-      <!-- Нижняя панель с фоном и темой -->
-      <div class="bottom-controls">
-        <button id="themeToggle" class="icon-button">🌞</button>
-        <button id="bgToggle" class="icon-button">🎨</button>
-        <div id="bgOptions" class="bg-options hidden">
-          <label><input type="radio" name="bg" value="bg1" checked> Горы</label>
-          <label><input type="radio" name="bg" value="bg2"> Город</label>
-          <label><input type="radio" name="bg" value="bg3"> Пляж</label>
-        </div>
+      <div id="bgOptions" class="bg-options hidden">
+        <label><input type="radio" name="bg" value="bg1" > Горы</label>
+        <label><input type="radio" name="bg" value="bg2"> Город</label>
+        <label><input type="radio" name="bg" value="bg3"> Пляж</label>
       </div>
     </div>
   </div>
 
-  <!-- панель треков -->
   <div class="track-panel">
     <img src="" alt="Cover" class="track-cover" />
     <div class="track-info">
@@ -77,6 +67,8 @@
       </div>
     </div>
   </div>
+
+  
 
   <audio id="bgAudio" src="" loop preload="auto"></audio>
   <script src="/style/js/script.js"></script>
