@@ -95,8 +95,6 @@
     font-size: 0.85rem;
     border-radius: 12px;
     background: var(--bg-secondary);
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1),
-                -4px -4px 6px rgba(255, 255, 255, 0.3);
     text-decoration: none;
     color: var(--text-primary);
     transition: transform 0.3s ease; /* Добавлена плавная анимация для трансформации */
@@ -107,8 +105,6 @@
   }
   .social-btn:hover {
     transform: scale(1.07); /* плавное увеличение */
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.15),
-                -2px -2px 4px rgba(255,255,255,0.25);
   }
   
 
