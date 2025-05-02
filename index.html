@@ -6,6 +6,7 @@
   <title>Lew3l1</title>
   <link rel="shortcut icon" href="/assets/img/photo/logo.jpg" type="image/x-icon">
   <link rel="stylesheet" href="/style/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
   <div id="background" class="background-container">
@@ -14,6 +15,29 @@
       Your browser does not support the video tag.
     </video>
   </div>
+
+  <!-- КНОПКА ПОДЕЛИТЬСЯ -->
+  <div class="share-btn-container">
+    <button id="share-btn" class="share-btn">
+        <i class="fas fa-share-alt"></i> 
+    </button>
+
+    <!-- Панель с контентом для поделиться -->
+    <div id="share-panel" class="share-panel hidden">
+        <div class="qr-code">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=YOUR_URL_HERE&size=150x150" alt="QR Code">
+        </div>
+        <div class="copy-link">
+            <input type="text" value="YOUR_URL_HERE" id="copy-link-input" readonly>
+            <button onclick="copyToClipboard()">Копировать ссылку</button>
+        </div>
+        <div class="social-links">
+            <a href="https://t.me/share/url?url=YOUR_URL_HERE" target="_blank">Телеграм</a>
+            <a href="mailto:?subject=Check this out&body=YOUR_URL_HERE" target="_blank">Email</a>
+        </div>
+    </div>
+</div>
+
 
   <div class="center-oval main-panel">
     <div class="avatar-circle">
