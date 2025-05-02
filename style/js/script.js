@@ -236,7 +236,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Функция для копирования ссылки в буфер обмена
   function copyToClipboard() {
-    navigator.clipboard.writeText(url).then(function() {
+    const inputElement = document.getElementById('copy-link-input'); // Получаем элемент с ссылкой
+    navigator.clipboard.writeText(inputElement.value).then(function() {
       // Показываем уведомление о копировании
       showNotification();
     }).catch(function(err) {
@@ -252,16 +253,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 2000); // Уведомление исчезает через 2 секунды
   }
 
-  // Функция для смены темы
-  function toggleTheme() {
-    const currentTheme = document.body.getAttribute('data-theme');
-    if (currentTheme === 'dark') {
-      document.body.setAttribute('data-theme', 'light');
-    } else {
-      document.body.setAttribute('data-theme', 'dark');
-    }
-  }
-
   // Пример кнопки для смены темы
   const themeToggleButton = document.createElement('button');
   themeToggleButton.innerText = 'Сменить тему';
@@ -269,3 +260,4 @@ document.addEventListener('DOMContentLoaded', function () {
   themeToggleButton.addEventListener('click', toggleTheme);
   document.body.appendChild(themeToggleButton);
 });
+
