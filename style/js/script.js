@@ -32,7 +32,7 @@ settingsBtn.addEventListener('click', () => {
 
 // Закрывать всё по клику вне
 document.addEventListener('click', e => {
-  if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+  if (!settingsPanel.contains(e.target) && !settingsBtn.contains(e.target)){
     settingsPanel.classList.add('hidden');
   }
   if (!bgOptions.contains(e.target) && e.target !== bgToggle) {
@@ -70,35 +70,46 @@ volumeSlider.addEventListener('input', e => {
 
 
 // ── Смена темы ───────────────────────────────────────────────────────────────
+const themeIcon = themeToggle.querySelector('img');
 themeToggle.addEventListener('click', e => {
   e.stopPropagation();
   const html = document.documentElement;
   const isLight = html.getAttribute('data-theme') === 'light';
   html.setAttribute('data-theme', isLight ? 'dark' : 'light');
-  // обновляем иконку
-  themeToggle.textContent = isLight ? '🌙' : '🌞';
+
+  // меняем иконку напрямую
+  themeIcon.src = isLight ? 'assets/img/icons/moon.png' : 'assets/img/icons/sun.png';
+  themeIcon.alt = isLight ? 'Moon' : 'Sun';
 });
+
 
 // ── Смена фона ───────────────────────────────────────────────────────────────
 bgToggle.addEventListener('click', e => {
   e.stopPropagation();
   bgOptions.classList.toggle('hidden');
 });
-document
-  .querySelectorAll('input[name="bg"]')
-  .forEach(radio => {
-    radio.addEventListener('change', e => {
-      const val = e.target.value;
-      // используем CSS-переменную из :root
-      bgContainer.style.backgroundImage = getComputedStyle(document.documentElement)
-        .getPropertyValue(`--${val}`);
-      // сразу закрываем меню
-      bgOptions.classList.add('hidden');
-    });
+
+document.querySelectorAll('input[name="bg"]').forEach(radio => {
+  radio.addEventListener('change', e => {
+    const val = e.target.value;
+
+    // Меняем фоновую картинку, если у тебя фон — это просто div с background-image
+    bgContainer.style.backgroundImage = `url('assets/img/bg/${val}.webm')`;
+
+    // Если используешь видео-фон, и <video id="bgVideo"> существует
+    const bgVideo = document.getElementById('bgVideo');
+    if (bgVideo) {
+      const bgSource = bgVideo.querySelector('source');
+      bgSource.src = `assets/img/bg/${val}.webm`;
+      bgVideo.load(); // перезагрузка видео
+    }
+
+    bgOptions.classList.add('hidden');
   });
+});
 
 // Устанавливаем дефолтный фон сразу
-bgContainer.style.backgroundImage = `url('assets/img/bg/default.mp4')`;
+bgContainer.style.backgroundImage = `url('assets/img/bg/default.webm')`;
 
 
 // ── Плейлист и треки ────────────────────────────────────────────────────────
@@ -166,8 +177,6 @@ volumeRange.addEventListener('input', () => {
 });
 
 
-
-
 const toggleTheme = () => {
   const body = document.body;
   const currentTheme = body.getAttribute('data-theme');
@@ -178,3 +187,18 @@ const toggleTheme = () => {
     body.setAttribute('data-theme', 'dark');
   }
 };
+
+const bgVideo = document.getElementById('bgVideo');
+const bgSource = bgVideo.querySelector('source');
+
+document.querySelectorAll('input[name="bg"]').forEach(radio => {
+  radio.addEventListener('change', e => {
+    const val = e.target.value;
+    bgSource.src = `assets/img/bg/${val}.webm`;
+    bgVideo.load();
+    bgOptions.classList.add('hidden');
+  });
+});
+
+
+
