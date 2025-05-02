@@ -65,7 +65,7 @@ headphonesBtn.addEventListener('click', e => {
   volumePopup.classList.toggle('hidden');
 });
 volumeSlider.addEventListener('input', e => {
-  bgAudio.volume = e.target.value / 100;
+  bgAudio.volume = e.target.value / 50;
 });
 
 
@@ -129,7 +129,7 @@ nextBtn.addEventListener('click', () => {
 });
 
 // автозапуск и громкость по умолчанию
-bgAudio.volume = 0.5;
+bgAudio.volume = 0.1;
 loadTrack(currentTrack);
 let audioStarted = false;
 ['click','keydown'].forEach(evt => {
