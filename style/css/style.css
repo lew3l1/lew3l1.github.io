@@ -8,6 +8,8 @@
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
+
+ 
   
   body {
     background: var(--bg-color);
@@ -90,22 +92,77 @@
   .social-links {
     display: flex; flex-direction: column; gap: 12px;
   }
-  .social-btn {
-    padding: 8px 14px;
-    font-size: 0.85rem;
-    border-radius: 12px;
-    background: var(--bg-secondary);
-    text-decoration: none;
-    color: var(--text-primary);
-    transition: transform 0.3s ease; /* Добавлена плавная анимация для трансформации */
-    text-align: center;
-  }
-  html[data-theme="dark"] .social-btn {
-    background: rgba(0,0,0,0.5);
-  }
-  .social-btn:hover {
-    transform: scale(1.07); /* плавное увеличение */
-  }
+
+
+/* Стили для кнопок */
+.social-btn {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  background: transparent; /* Начальный фон без заполнения */
+  color: var(--text-primary); /* Цвет текста по умолчанию */
+  border: 2px solid var(--border-color-light); /* Светлая рамка по умолчанию */
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Плавные анимации для трансформации и цвета */
+}
+
+/* Для светлой темы */
+html[data-theme="light"] .social-btn {
+  color: var(--text-primary-light); /* Цвет текста в светлой теме */
+  border-color: var(--border-color-light); /* Цвет рамки в светлой теме */
+}
+
+/* Для темной темы */
+html[data-theme="dark"] .social-btn {
+  color: var(--text-primary-dark); /* Цвет текста в темной теме */
+  border-color: var(--border-color-dark); /* Цвет рамки в темной теме */
+}
+
+/* Эффект наведения */
+.social-btn:hover {
+  transform: scale(1.07); /* Увеличение кнопки */
+  color: var(--highlight-color); /* Цвет текста при наведении */
+  border-color: var(--highlight-color); /* Рамка также меняется на цвет при наведении */
+}
+
+.social-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background-color: var(--highlight-color);
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0.2;
+}
+
+/* При наведении: кнопка заполняется цветом */
+.social-btn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.4;
+}
+
+/* Для темной темы */
+html[data-theme="dark"] .social-btn::before {
+  background-color: var(--highlight-color-dark);
+}
+
+/* Пример для темных и светлых переменных */
+:root {
+  --text-primary-light: #dadada; /* Текст для светлой темы */
+  --text-primary-dark: #f0f0f0; /* Текст для темной темы */
+  --highlight-color: #6b99e2; /* Цвет для наведения */
+  --highlight-color-dark: #3578e5; /* Цвет для темной темы при наведении */
+  --border-color-light: #ddd; /* Светлая рамка по умолчанию */
+  --border-color-dark: #555; /* Темная рамка по умолчанию */
+}
+
   
 
   /* иконка настроек */
@@ -188,7 +245,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 5px;
     margin-top: 10px;
     border-radius: 15px;
     padding: 5px;
@@ -620,14 +677,7 @@ html[data-theme="dark"] .center-oval {
       margin-bottom: 20px;
     }
   
-  
-  
-    .social-btn {
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      padding: 10px 0;
-    }
+
   
     .icon-links {
       flex-wrap: wrap;
@@ -877,15 +927,5 @@ html[data-theme="light"] .icon-link img {
   margin: 0 10px;
 }
 
-/* Адаптация под тёмную тему */
-body[data-theme="dark"] {
-  --highlight-color: #4d90fe;
-  --highlight-color-hover: #3578e5;
-  --qr-code-bg: #2b2b2b;
-}
 
-body[data-theme="light"] {
-  --highlight-color: #4d90fe;
-  --highlight-color-hover: #3578e5;
-  --qr-code-bg: #f9f9f9;
-}
+
