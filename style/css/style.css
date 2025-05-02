@@ -771,3 +771,68 @@ html[data-theme="light"] .icon-link img {
 }
 
 
+/* КНОПКА ПОДЕЛИТЬСЯ */
+.share-btn-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.share-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--highlight-color);
+  transition: transform 0.3s ease;
+}
+
+.share-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Панель с контентом */
+.share-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.share-panel .qr-code img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 15px;
+}
+
+.share-panel .copy-link input {
+  padding: 10px;
+  width: 250px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.share-panel .social-links a {
+  color: #4d90fe;
+  text-decoration: none;
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.share-panel .social-links a:hover {
+  text-decoration: underline;
+}
+
+/* Для скрытия панели по умолчанию */
+.hidden {
+  display: none;
+}
