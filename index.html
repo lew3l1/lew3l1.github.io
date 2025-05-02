@@ -7,7 +7,12 @@
   <link rel="stylesheet" href="/style/css/style.css" />
 </head>
 <body>
-  <div id="background"></div>
+  <div id="background" class="background-container">
+    <video id="bgVideo" autoplay muted loop>
+      <source src="assets/img/bg/default.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
   <div class="center-oval main-panel">
     <div class="avatar-circle">
@@ -17,27 +22,25 @@
     <h1 class="nickname animated-item">lew3l1</h1>
   
     <!-- Подпись под ником -->
-    <p class="subtitle animated-item">Welcome to my digital space</p>
+    <p class="subtitle animated-item">don't waste ur time</p>
   
     <!-- Иконки-ссылки -->
     <div class="icon-links">
-      <a href="https://github.com/" target="_blank" class="icon-link">
-        <img src="assets/icons/github.svg" alt="GitHub">
+      <a href="https://docs.google.com/spreadsheets/d/1MqPcphLaPwYCvcrY-7s6d-jzQEHYOqPaHFbKazZGRKY/edit?usp=sharing" target="_blank" class="icon-link">
+        <img src="assets/img/icons/director.png" alt="Mod">
       </a>
-      <a href="https://pinterest.com/" target="_blank" class="icon-link">
-        <img src="assets/icons/pinterest.svg" alt="Pinterest">
+      <a href="https://open.spotify.com/user/kzi1q2atmab9vt2griqt68x2l?si=0c493deadcfb4c31" target="_blank" class="icon-link">
+        <img src="assets/img/icons/spotify.png" alt="Spotify">
       </a>
-      <a href="https://store.steampowered.com/" target="_blank" class="icon-link">
-        <img src="assets/icons/steam.svg" alt="Steam">
-      </a>
+      <a href="https://github.com/lew3l1" target="_blank" class="icon-link">
+        <img src="assets/img/icons/github.png" alt="GitHub">
     </div>
   
     <!-- Кнопки-ссылки -->
     <div class="social-links">
-      <a href="#" class="social-btn animated-item">Telegram</a>
-      <a href="#" class="social-btn animated-item">Twitch</a>
-      <a href="#" class="social-btn animated-item">Github</a>
-      <a href="#" class="social-btn animated-item">Mod</a>
+      <a href="https://web.telegram.org/k/#@lew3l1" class="social-btn animated-item">Telegram</a>
+      <a href="https://www.twitch.tv/lew3l1" class="social-btn animated-item">Twitch</a>
+      <a href="https://steamcommunity.com/id/lew3l1/" class="social-btn animated-item">Steam</a>
     </div>
   </div>
   
@@ -92,6 +95,16 @@
   
 
   <audio id="bgAudio" src="" loop preload="auto"></audio>
+
+  <script>
+    const toggleBtn = document.querySelector('.toggle-inner-block-btn');
+    const innerBlock = document.querySelector('.inner-settings-content');
+  
+    toggleBtn.addEventListener('click', () => {
+      innerBlock.classList.toggle('hidden');
+    });
+  </script>
+  
   <script src="/style/js/script.js"></script>
 </body>
 </html>
