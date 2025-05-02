@@ -22,43 +22,32 @@
     <button class="share-btn btn btn-outline-primary rounded-circle">
       <i class="fas fa-share-alt"></i>
     </button>
+      
+      <div class="share-panel shadow-lg p-3 bg-white rounded">
+        <!-- Контейнер для кнопок и QR-кода -->
+        <div class="d-flex flex-column align-items-center">
     
-    <div class="share-panel shadow-lg p-3 bg-white rounded">
-      <!-- Контейнер для кнопок и QR-кода -->
-      <div class="d-flex flex-column align-items-center">
-  
-        <!-- Блок с кнопками для Telegram и Email -->
-        <div class="d-flex justify-content-between mb-3">
-          <!-- Кнопка Telegram -->
-          <a href="https://t.me/share/url?url=https://lew3l1.github.io" target="_blank" class="btn btn-outline-info rounded-circle">
-            <i class="fab fa-telegram-plane"></i>
-          </a>
-          
-          <!-- Кнопка Email -->
-          <a href="mailto:?subject=Check out this website&body=https://lew3l1.github.io" class="btn btn-outline-danger rounded-circle">
-            <i class="fas fa-envelope"></i>
-          </a>
+          <!-- Блок с кнопками для Telegram и Twitter -->
+          <div class="d-flex justify-content-between mb-3">
+            <!-- Кнопка Telegram -->
+            <a href="https://t.me/share/url?url=https://lew3l1.github.io" target="_blank" class="btn btn-outline-info rounded-circle">
+              <i class="fab fa-telegram-plane"></i>
+            </a>
+            
+            <!-- Кнопка Twitter -->
+            <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20website:%20https://lew3l1.github.io" target="_blank" class="btn btn-outline-info rounded-circle">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+    
+          <!-- QR-код -->
+          <div class="qr-code mb-3">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://lew3l1.github.io&size=150x150" alt="QR Code" class="img-fluid">
+          </div>
         </div>
-  
-        <!-- QR-код -->
-        <div class="qr-code mb-3">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://lew3l1.github.io&size=150x150" alt="QR Code" class="img-fluid">
-        </div>
-  
-        <!-- Ссылка с копированием -->
-        <div class="copy-link-container mb-3">
-          <input type="text" id="copy-link-input" class="form-control" value="https://lew3l1.github.io" readonly>
-          <button id="copy-btn" class="btn btn-outline-primary mt-2">Копировать ссылку</button>
-        </div>
-  
       </div>
-    </div>
-  
-    <!-- Уведомление -->
-    <div id="notification" class="notification alert alert-success d-none mt-2" role="alert">
-      Ссылка скопирована!
-    </div>
   </div>
+  
 
 
   
@@ -109,7 +98,7 @@
 
           <div class="audio-block">
             <div class="audio-text">
-              <span class="audio-sub">Our last project</span>
+              <span class="audio-sub">Last project</span>
               <span class="audio-main">TW.027</span>
             </div>
             <div class="audio-controls">
@@ -140,13 +129,17 @@
   <div class="track-panel">
     <img src="" alt="Cover" class="track-cover" />
     <div class="track-info">
-      <div class="marquee"><span class="marquee-text"></span></div>
+      <div class="track-name">
+        <span class="track-title"></span>
+        <span class="track-artist"></span>
+      </div>
       <div class="track-arrows">
         <button class="arrow-btn prev-btn">⟵</button>
         <button class="arrow-btn next-btn">⟶</button>
       </div>
     </div>
   </div>
+  
 
   
  
