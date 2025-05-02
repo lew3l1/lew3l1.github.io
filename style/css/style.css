@@ -10,14 +10,15 @@
   }
   
   body {
-    font-family: 'Segoe UI', sans-serif;
-    height: 100vh;
+    background: var(--bg-color);
+    transition: background 0.3s ease;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    position: relative;
-    color: var(--text-primary);
+    min-height: 100vh;
   }
   
   /* фон */
@@ -33,21 +34,32 @@
   
   /* центральный овал */
   .center-oval {
-    width: 320px; height: 500px;
-    background: rgba(255,255,255,0.2);
-    border: 2px solid rgba(255,255,255,0.5);
-    border-radius: 50%/40%;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    text-align: center;
-    padding: 40px 20px;
-    position: relative;
+    transition: all 0.3s ease;
+    background: var(--box-bg);
+    box-shadow: var(--neomorph-shadow);
+    width: fit-content;
+    max-width: 600px;
+    padding: 40px 50px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   html[data-theme="dark"] .center-oval {
     background: rgba(0,0,0,0.5);
     border: 2px solid rgba(255,255,255,0.3);
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
   }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 0 10px;
+  }
+
+
   
   .avatar-circle img {
     width: 100px; height: 100px;
@@ -76,19 +88,24 @@
     display: flex; flex-direction: column; gap: 12px;
   }
   .social-btn {
-    text-decoration: none;
-    padding: 10px;
-    background: rgba(255,255,255,0.5);
-    border-radius: 20px;
-    color: inherit;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.1),
+              -4px -4px 6px rgba(255,255,255,0.3);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: 0.2s ease;
+  text-align: center;
+}
   html[data-theme="dark"] .social-btn {
     background: rgba(0,0,0,0.5);
   }
   .social-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.15),
+                -2px -2px 4px rgba(255,255,255,0.25);
   }
   
   /* иконка настроек */
@@ -407,17 +424,6 @@ html[data-theme="dark"] .center-oval {
     margin: 0; padding: 0; box-sizing: border-box;
   }
   
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-    color: var(--text-primary);
-  }
-  
   #background {
     position: fixed; 
     top: 0; left: 0;
@@ -430,16 +436,17 @@ html[data-theme="dark"] .center-oval {
   }
   
   .center-oval {
-    width: 320px; height: 500px;
+    padding: 40px 30px;
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50px;
     background: var(--bg-primary);
-    border: 2px solid rgba(255,255,255,0.5);
-    border-radius: 50%/40%;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    text-align: center;
-    padding: 40px 20px;
-    position: relative;
-    margin-top: 60px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.1),
+                -10px -10px 30px rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
   }
   
   .settings-icon {
@@ -512,3 +519,90 @@ html[data-theme="dark"] .center-oval {
   }
   
  
+  .icon-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .icon-link {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+  }
+  .icon-link:hover,
+  .icon-link:focus,
+  .icon-link:active {
+  transform: scale(1.2);
+}
+  .icon-link img {
+    width: 100%;
+    height: 100%;
+    filter: invert(20%);
+  }
+  html[data-theme="dark"] .icon-link img {
+    filter: invert(90%);
+  }
+  
+
+  @media (max-width: 600px) {
+    .center-oval {
+      max-width: 90%;
+      padding: 30px 20px;
+      border-radius: 30px;
+    }
+  
+    .nickname {
+      font-size: 1.4rem;
+      text-align: center;
+    }
+  
+    .subtitle {
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .social-links {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .social-btn {
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 10px 0;
+    }
+  
+    .icon-links {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  
+    .icon-link {
+      width: 26px;
+      height: 26px;
+    }
+  }
+  
+
+  :root {
+    --bg-color: #e0e0e0;
+    --box-bg: #f0f0f0;
+    --text-color: #333;
+    --neomorph-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  }
+
+  .dark-theme {
+    --bg-color: #1c1c1c;
+    --box-bg: #2a2a2a;
+    --text-color: #f0f0f0;
+    --neomorph-shadow: 6px 6px 12px #141414, -6px -6px 12px #2e2e2e;
+  }
