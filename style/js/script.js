@@ -98,7 +98,7 @@ document
   });
 
 // Устанавливаем дефолтный фон сразу
-bgContainer.style.backgroundImage = `url('assets/img/bg/default.jpg')`;
+bgContainer.style.backgroundImage = `url('assets/img/bg/default.mp4')`;
 
 
 // ── Плейлист и треки ────────────────────────────────────────────────────────
@@ -165,3 +165,16 @@ volumeRange.addEventListener('input', () => {
   bgAudio.volume = volumeRange.value;
 });
 
+
+
+
+const toggleTheme = () => {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  
+  if (currentTheme === 'dark') {
+    body.setAttribute('data-theme', 'light');
+  } else {
+    body.setAttribute('data-theme', 'dark');
+  }
+};
