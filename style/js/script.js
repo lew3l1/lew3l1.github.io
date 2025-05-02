@@ -114,19 +114,22 @@ bgContainer.style.backgroundImage = `url('assets/img/bg/default.webm')`;
 
 // ── Плейлист и треки ────────────────────────────────────────────────────────
 const trackList = [
-  { name: 'Junkie Kis2 3', sub: 'Friendly Thug 52', src: 'assets/sound/tracks/track52.mp3', cover: 'assets/sound/icons/52.jpg' },
-  { name: 'Такси', sub: 'al1xon', src: 'assets/sound/tracks/taxi.mp3',cover: 'assets/sound/icons/taxi.jpg' },
-  { name: 'Sun to me', sub: 'mgk', src: 'assets/sound/tracks/mgksun.mp3', cover: 'assets/sound/icons/mgkSun.jpg' }
+  { name: 'Junkie Kis2 3 -', sub: '52', src: 'assets/sound/tracks/track52.mp3', cover: 'assets/sound/icons/52.jpg' },
+  { name: 'Такси -', sub: 'al1xon', src: 'assets/sound/tracks/taxi.mp3', cover: 'assets/sound/icons/taxi.jpg' },
+  { name: 'Sun to me -', sub: 'mgk', src: 'assets/sound/tracks/mgksun.mp3', cover: 'assets/sound/icons/mgkSun.jpg' }
 ];
 let currentTrack = 0;
 
 function loadTrack(i) {
   const t = trackList[i];
-  bgAudio.src            = t.src;
-  audioSub.textContent   = t.sub;
-  audioMain.textContent  = t.name;
-  trackCover.src         = t.cover;
-  marqueeText.textContent= `${t.name} — ${t.sub}`;
+  const trackTitle = document.querySelector('.track-title');
+  const trackArtist = document.querySelector('.track-artist');
+  const trackCover = document.querySelector('.track-cover');
+  
+  bgAudio.src = t.src;
+  trackTitle.textContent = t.name;
+  trackArtist.textContent = t.sub;
+  trackCover.src = t.cover;
   bgAudio.play().catch(() => {});
 }
 
@@ -134,13 +137,14 @@ prevBtn.addEventListener('click', () => {
   currentTrack = (currentTrack - 1 + trackList.length) % trackList.length;
   loadTrack(currentTrack);
 });
+
 nextBtn.addEventListener('click', () => {
   currentTrack = (currentTrack + 1) % trackList.length;
   loadTrack(currentTrack);
 });
 
 // автозапуск и громкость по умолчанию
-bgAudio.volume = 0.1;
+bgAudio.volume = 0.10;
 loadTrack(currentTrack);
 let audioStarted = false;
 ['click','keydown'].forEach(evt => {
@@ -205,9 +209,6 @@ document.querySelectorAll('input[name="bg"]').forEach(radio => {
 document.addEventListener('DOMContentLoaded', function () {
   const shareBtn = document.querySelector('.share-btn');
   const sharePanel = document.querySelector('.share-panel');
-  const url = 'https://lew3l1.github.io'; // Ссылка для копирования
-  const copyBtn = document.getElementById('copy-btn');
-  const notification = document.getElementById('notification'); // Элемент для уведомления
 
   // Открытие панели при наведении на кнопку
   shareBtn.addEventListener('mouseenter', function () {
@@ -227,37 +228,6 @@ document.addEventListener('DOMContentLoaded', function () {
   sharePanel.addEventListener('mouseleave', function () {
     sharePanel.classList.add('d-none'); // Скрываем панель при убирании курсора с панели
   });
-
-  // Логика копирования ссылки при клике на кнопку
-  copyBtn.addEventListener('click', function (e) {
-    copyToClipboard(); // Копируем ссылку
-    e.stopPropagation(); // Останавливаем всплытие события, чтобы не закрыть панель при клике на кнопку
-  });
-
-  // Функция для копирования ссылки в буфер обмена
-  function copyToClipboard() {
-    const inputElement = document.getElementById('copy-link-input'); // Получаем элемент с ссылкой
-    navigator.clipboard.writeText(inputElement.value).then(function() {
-      // Показываем уведомление о копировании
-      showNotification();
-    }).catch(function(err) {
-      console.error("Ошибка копирования: ", err);
-    });
-  }
-
-  // Функция для показа уведомления
-  function showNotification() {
-    notification.classList.remove('d-none');
-    setTimeout(function() {
-      notification.classList.add('d-none');
-    }, 2000); // Уведомление исчезает через 2 секунды
-  }
-
-  // Пример кнопки для смены темы
-  const themeToggleButton = document.createElement('button');
-  themeToggleButton.innerText = 'Сменить тему';
-  themeToggleButton.classList.add('btn', 'btn-secondary', 'mt-3');
-  themeToggleButton.addEventListener('click', toggleTheme);
-  document.body.appendChild(themeToggleButton);
 });
+
 
