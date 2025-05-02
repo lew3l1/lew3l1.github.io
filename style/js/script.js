@@ -201,17 +201,36 @@ document.querySelectorAll('input[name="bg"]').forEach(radio => {
 });
 
 
-/* КНОПКА ПОДЕЛИТЬСЯ */
-// Открытие/закрытие панели при клике на кнопку
-document.getElementById('share-btn').addEventListener('click', function() {
-  const panel = document.getElementById('share-panel');
-  panel.classList.toggle('hidden');
-});
+document.addEventListener('DOMContentLoaded', function () {
+  const shareBtn = document.querySelector('.share-btn');
+  const sharePanel = document.querySelector('.share-panel');
 
-// Функция для копирования ссылки в буфер обмена
-function copyToClipboard() {
-  const copyText = document.getElementById('copy-link-input');
-  copyText.select();
-  document.execCommand('copy');
-  alert("Ссылка скопирована!");
-}
+  // Открытие панели при наведении на кнопку
+  shareBtn.addEventListener('mouseenter', function () {
+    sharePanel.classList.remove('hidden'); // Показываем панель при наведении
+  });
+
+  // Закрытие панели при убирании курсора с кнопки или панели
+  shareBtn.addEventListener('mouseleave', function () {
+    // Добавляем небольшую задержку перед скрытием панели, чтобы не закрывалась мгновенно
+    setTimeout(() => {
+      if (!sharePanel.matches(':hover')) {
+        sharePanel.classList.add('hidden');
+      }
+    }, 200);
+  });
+
+  // Закрытие панели при убирании курсора с панели
+  sharePanel.addEventListener('mouseleave', function () {
+    sharePanel.classList.add('hidden'); // Скрываем панель при убирании курсора с панели
+  });
+
+  // Логика копирования ссылки
+  window.copyToClipboard = function () {
+    const copyText = document.getElementById('copy-link-input');
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    alert("Ссылка скопирована!");
+  };
+});
