@@ -114,9 +114,9 @@ bgContainer.style.backgroundImage = `url('assets/img/bg/default.webm')`;
 
 // ── Плейлист и треки ────────────────────────────────────────────────────────
 const trackList = [
-  { name: 'Junkie Kis2 3 -', sub: '52', src: 'assets/sound/tracks/track52.mp3', cover: 'assets/sound/icons/52.jpg' },
-  { name: 'Такси -', sub: 'al1xon', src: 'assets/sound/tracks/taxi.mp3', cover: 'assets/sound/icons/taxi.jpg' },
-  { name: 'Sun to me -', sub: 'mgk', src: 'assets/sound/tracks/mgksun.mp3', cover: 'assets/sound/icons/mgkSun.jpg' }
+  { name: '52.Markul -', sub: 'Skyscaper', src: 'assets/sound/tracks/Skyscraper.mp3', cover: 'assets/sound/icons/52.jpg' },
+  { name: 'LXST -', sub: 'Andromeda', src: 'assets/sound/tracks/lxst.mp3', cover: 'assets/sound/icons/lxst.jpg' },
+  { name: 'MGK', sub: 'Sun to me', src: 'assets/sound/tracks/mgksun.mp3', cover: 'assets/sound/icons/mgkSun.jpg' }
 ];
 let currentTrack = 0;
 
