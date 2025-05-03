@@ -231,3 +231,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+volumeSlider.addEventListener('input', e => {
+  bgAudio.volume = e.target.value / 100;
+});
+volumeSlider.addEventListener('touchstart', e => {
+  bgAudio.volume = e.target.value / 100;
+});
